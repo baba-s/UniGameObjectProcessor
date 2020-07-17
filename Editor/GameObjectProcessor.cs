@@ -159,8 +159,9 @@ namespace Kogane
 					if ( isSave )
 					{
 						PrefabUtility.SaveAsPrefabAsset( prefab, prefabPath );
-						PrefabUtility.UnloadPrefabContents( prefab );
 					}
+
+					PrefabUtility.UnloadPrefabContents( prefab );
 				}
 			}
 			finally
