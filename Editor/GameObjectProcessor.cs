@@ -31,6 +31,37 @@ namespace Kogane
 		// 関数(static)
 		//================================================================================
 		/// <summary>
+		/// すべてのシーンとプレハブに存在するすべてのゲームオブジェクトに対して処理を行います
+		/// </summary>
+		/// <param name="onProcess">ゲームオブジェクトに対して処理を行うデリゲート</param>
+		public static void ProcessAllScenesAndPrefabs( Func<GameObject, GameObjectProcessResult> onProcess )
+		{
+			ProcessAllScenesAndPrefabs
+			(
+				scenePathFilter: null,
+				prefabPathFilter: null,
+				onProcess: onProcess
+			);
+		}
+
+		/// <summary>
+		/// すべてのシーンとプレハブに存在するすべてのゲームオブジェクトに対して処理を行います
+		/// </summary>
+		/// <param name="scenePathFilter">処理を行うシーンを絞り込むためのデリゲート</param>
+		/// <param name="prefabPathFilter">処理を行うプレハブを絞り込むためのデリゲート</param>
+		/// <param name="onProcess">ゲームオブジェクトに対して処理を行うデリゲート</param>
+		public static void ProcessAllScenesAndPrefabs
+		(
+			Func<string, bool>                        scenePathFilter,
+			Func<string, bool>                        prefabPathFilter,
+			Func<GameObject, GameObjectProcessResult> onProcess
+		)
+		{
+			ProcessAllScenes( scenePathFilter, onProcess );
+			ProcessAllPrefabs( prefabPathFilter, onProcess );
+		}
+
+		/// <summary>
 		/// すべてのシーンに存在するすべてのゲームオブジェクトに対して処理を行います
 		/// </summary>
 		/// <param name="onProcess">ゲームオブジェクトに対して処理を行うデリゲート</param>
